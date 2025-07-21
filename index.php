@@ -1,54 +1,61 @@
 <?php
 
-class Genre
-{
-  public $genres;
-  public function __construct($_gen_1, $_gen_2, $_gen_3)
-  {
-    // $this->genreName = $_genreName;
-    $this->genres = [$_gen_1, $_gen_2, $_gen_3];
-  }
-}
-class Movie
-{
+// require traits
+require_once "./Traits/Cover.php";
 
-  public $title;
-  public $director;
-  public $release;
-  public $revenue;
-  public $country;
-  public $genre;
+// require classes
+require_once "./Models/Genre.php";
+require_once "./Models/Movie.php";
 
-  public function __construct($_title, $_director, $_release, $_revenue, $_country, Genre $_genre)
-  {
-    $this->title = $_title;
-    $this->director = $_director;
-    $this->release = $_release;
-    $this->revenue = $_revenue;
-    $this->country = $_country;
-    $this->genre = $_genre;
-  }
-}
+// define movies
+$mov_1 = new Movie(
+  "IT",
+  "Andy Muschietti",
+  2017,
+  "704.2 mil",
+  "USA",
+  new Genre("Horror", "Supernatural", null)
+);
 
-$mov_1 = new Movie("IT", "Andy Muschietti", 2017, "704.2 mil", "USA", new Genre("Horror", "Supernatural", null));
-$mov_2 = new Movie("The Blob", "Irvin S. Yeaworth Jr.", 1958, "4 mil", "USA", new Genre("Thriller", "Horror", "Sci-Fi"));
+$mov_2 = new Movie(
+  "The Blob",
+  "Irvin S. Yeaworth Jr.",
+  1958,
+  "4 mil",
+  "USA",
+  new Genre("Thriller", "Horror", "Sci-Fi")
+);
 
+//define movie covers
+$mov_1->setUrl(" https://en.wikipedia.org/w/index.php?curid=50943697");
+$mov_2->setUrl("https://en.wikipedia.org/w/index.php?curid=880563");
+
+// define movies array
 $movies = [$mov_1, $mov_2];
 
+// render cycle
 foreach ($movies as $movie) {
+
   foreach ($movie as $key => $value) {
+
+    // check if value is a class object (genre)
     if (!is_string($value) && !is_int($value)) {
+
+      // cycle genres
       foreach ($value as $array) {
+
         if (in_array(null, $array)) {
+          // function: removes null values from genres array
           $callback = function ($item) {
             return $item !== null;
           };
-          echo join(", ", array_filter($array, $callback));
+          // print genres
+          echo join(", ", array_filter($array, $callback)), "<br>";
         } else {
-          echo join(", ", $array);
+          echo join(", ", $array), "<br>";
         }
       }
-    } else {
+    } else { // if string or int, print
       echo $value, "<br>";
     }
   }
