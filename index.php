@@ -1,47 +1,49 @@
-<?php
+<?php require_once "./utils/functions.php"; ?>
 
-require_once "./Traits/Cover.php";
+<!DOCTYPE html>
+<html lang="en">
 
-require_once "./Models/Genre.php";
-require_once "./Models/Movie.php";
+<head>
+  <?php require_once "./utils/html_head.php" ?>
+  <title>PHP Movies</title>
+</head>
 
-require_once "./data/movie_data.php";
+<body>
+  <div class="container-fluid text-center py-5">
+    <h1>PHP Movies</h1>
+  </div>
 
-require_once "./utils/functions.php";
+  <div class="container">
+    <div class="row mb-4">
 
-// render cycle
+      <?php
+      foreach ($moviesArray as $movie) {
+      ?>
 
-getMovies($movies);
+        <div class="col-12 col-lg-6 col-xxl-3 g-3">
+          <div class="card">
+            <div class="card-img-top">
+              <img src="<?php echo $movie["url"] ?>" class="rounded-top" alt="cover">
+            </div>
+            <div class="card-title ps-3 pt-2">
+              <h4><?php echo $movie["title"] ?></h4>
+            </div>
+            <div class="card-text ps-3 mb-2">
+              <div><b>Director:</b> <?php echo $movie["director"] ?></div>
+              <div><b>Year:</b> <?php echo $movie["release"] ?></div>
+              <div><b>Running time:</b> <?php echo $movie["running"] ?> minutes</div>
+              <div><b>Genres:</b> <?php echo $movie["genre"] ?></div>
+              <div><b>Country:</b> <?php echo $movie["country"] ?></div>
+            </div>
+          </div>
+        </div>
 
-// foreach ($movies as $movie) {
+      <?php
+      }
+      ?>
 
-//   foreach ($movie as $key => $value) {
+    </div>
+  </div>
+</body>
 
-//     // check if value is a class object (genre)
-//     if (!is_string($value) && !is_int($value)) {
-
-//       // cycle genres
-//       foreach ($value as $array) {
-
-//         if (in_array(null, $array)) {
-//           // function: removes null values from genres array
-//           $callback = function ($item) {
-//             return $item !== null;
-//           };
-//           // print genres
-//           echo join(", ", array_filter($array, $callback)), "<br>";
-//         } else {
-//           echo join(", ", $array), "<br>";
-//         }
-//       }
-//     } else { // if string or int, print
-//       echo $value, "<br>";
-//     }
-//   }
-//   echo '<hr>';
-// }
-
-// var_dump($movies);
-// var_dump($mov_1);
-// var_dump($mov_2);
-// echo "-----------------------", "<br>";
+</html>

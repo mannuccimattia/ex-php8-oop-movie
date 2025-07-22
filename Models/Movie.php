@@ -6,7 +6,7 @@ class Movie
   public $title;
   public $director;
   public $release;
-  public $revenue;
+  public $running;
   public $country;
   public $genre;
 
@@ -17,14 +17,14 @@ class Movie
     $_title,
     $_director,
     $_release,
-    $_revenue,
+    $_running,
     $_country,
     Genre $_genre
   ) {
     $this->title = $_title;
     $this->director = $_director;
     $this->release = $_release;
-    $this->revenue = $_revenue;
+    $this->running = $_running;
     $this->country = $_country;
     $this->genre = $_genre;
   }

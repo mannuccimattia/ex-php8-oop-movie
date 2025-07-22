@@ -1,0 +1,23 @@
+body {
+  background-color: rgb(85, 77, 158);
+}
+
+.container-fluid,
+.card-title {
+  background-color: rgb(49, 44, 90);
+  color: #fff;
+}
+
+.card-img-top {
+  min-height: 480px;
+}
+
+.card-img-top>img {
+  object-fit: cover;
+  width: 100%;
+  height: 480px;
+}
+
+.card-text {
+  font-size: 14px;
+}
